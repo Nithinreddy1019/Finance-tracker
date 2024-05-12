@@ -18,7 +18,7 @@ export const CardWrapper = ({
     children
 }: CardWrapperProps) => {
     return (
-        <div className="flex flex-col items-center justify-center gap-y-4 border-2 rounded-3xl p-4 w-[350px] md:w-[450px] border-light-bordercolor dark:border-dark-bordercolor dark:bg-dark-backgroundtwo ">
+        <div className="flex flex-col items-center justify-center gap-y-4 border-2 rounded-3xl p-4 w-[350px] md:w-[450px] py-8 border-light-bordercolor dark:border-dark-bordercolor dark:bg-dark-backgroundtwo ">
 
             <div className="flex flex-col items-center w-full">
                 <h1 className="text-3xl font-semibold">
