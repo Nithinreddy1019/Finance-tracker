@@ -12,12 +12,12 @@ export const NavBar = () => {
     const { hash, pathname, search } = location;
 
     return (
-        <nav className="flex items-center justify-between p-2 shadow-md dark:bg-dark-backgroundtwo sticky top-0 left-0">
+        <nav className="flex items-center justify-between p-2 border-b dark:border-b-dark-bordercolor dark:bg-dark-backgroundtwo sticky top-0 left-0">
             
             <div className="flex justify-center items-center gap-x-2 relative">
                 <Menu 
                     size={32}
-                    className="dark:text-dark-primary"
+                    className="text-light-primary dark:text-dark-primary"
                 />
                 <Link to={"/"} className="">
                     <img 
