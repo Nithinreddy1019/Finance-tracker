@@ -34,7 +34,7 @@ const LoginPage = () => {
                         buttonType="primary"
                         className="my-2"
                     >
-                        Signup
+                        Login
                     </Button>
 
                     <hr className="my-2"/>
