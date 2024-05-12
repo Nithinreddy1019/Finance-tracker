@@ -12,7 +12,7 @@ export const NavBar = () => {
     const { hash, pathname, search } = location;
 
     return (
-        <nav className="flex items-center justify-between p-2 ">
+        <nav className="flex items-center justify-between p-2 shadow-md dark:bg-dark-backgroundtwo sticky top-0 left-0">
             
             <div className="flex justify-center items-center">
                 <Menu 
@@ -22,7 +22,7 @@ export const NavBar = () => {
                 <Link to={"/"}>
                     <img 
                         src={logo} 
-                        className="w-10 pb-2"
+                        className="w-10 pb-1"
                     />
                 </Link>
             </div>
