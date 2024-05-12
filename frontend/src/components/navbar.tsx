@@ -14,15 +14,15 @@ export const NavBar = () => {
     return (
         <nav className="flex items-center justify-between p-2 shadow-md dark:bg-dark-backgroundtwo sticky top-0 left-0">
             
-            <div className="flex justify-center items-center">
+            <div className="flex justify-center items-center gap-x-2 relative">
                 <Menu 
                     size={32}
                     className="dark:text-dark-primary"
                 />
-                <Link to={"/"}>
+                <Link to={"/"} className="">
                     <img 
                         src={logo} 
-                        className="w-10 pb-1"
+                        className=" pb-0.5 absolute -top-0 h-8 w-8"
                     />
                 </Link>
             </div>
