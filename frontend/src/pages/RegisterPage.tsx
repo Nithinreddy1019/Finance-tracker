@@ -3,14 +3,17 @@ import { Socials } from "../components/socials";
 import { Button } from "../components/ui/button";
 import { CardWrapper } from "../components/ui/card-wrapper";
 import { InputBox } from "../components/ui/input-box";
+import { LoadFramerMotion } from "../components/ui/load-framer-motion";
 
 const RegisterPage = () => {
     return (
+        
         <div className="h-screen bg-white dark:bg-dark-backgroundone dark:text-light-background">
             <NavBar />
             
             <section className="flex items-center justify-center h-full p-2">
 
+                <LoadFramerMotion>
                 <CardWrapper
                     headerName="Hola! from FT"
                     headerCaption="Please signin to continue"
@@ -48,10 +51,12 @@ const RegisterPage = () => {
                     <Socials />
 
                 </CardWrapper>
-
+                </LoadFramerMotion>
             </section>
+            
 
         </div>
+        
     )
 };
 

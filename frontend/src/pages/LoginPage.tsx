@@ -3,6 +3,7 @@ import { Socials } from "../components/socials";
 import { Button } from "../components/ui/button";
 import { CardWrapper } from "../components/ui/card-wrapper";
 import { InputBox } from "../components/ui/input-box";
+import { LoadFramerMotion } from "../components/ui/load-framer-motion";
 
 const LoginPage = () => {
     return (
@@ -11,6 +12,7 @@ const LoginPage = () => {
             
             <section className="flex items-center justify-center h-full p-2">
 
+                <LoadFramerMotion>
                 <CardWrapper
                     headerName="Welcome back"
                     headerCaption="Please login to continue"
@@ -42,6 +44,7 @@ const LoginPage = () => {
                     <Socials />
 
                 </CardWrapper>
+                </LoadFramerMotion>
 
             </section>
 
