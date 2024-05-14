@@ -1,62 +1,32 @@
+import { RegisterForm } from "../components/auth/RegisterForm";
+import { Carousel } from "../components/carousel";
 import { NavBar } from "../components/navbar";
-import { Socials } from "../components/socials";
-import { Button } from "../components/ui/button";
-import { CardWrapper } from "../components/ui/card-wrapper";
-import { InputBox } from "../components/ui/input-box";
-import { LoadFramerMotion } from "../components/ui/load-framer-motion";
+
+
+import finance from "../assets/carouselImages/finance.svg";
+import expenses from "../assets/carouselImages/expenses.svg";
+import investments from "../assets/carouselImages/investments.svg";
 
 const RegisterPage = () => {
+
+    const imagesList = [finance, expenses, investments];
+
+
     return (
-        
-        <div className="h-screen bg-white dark:bg-dark-backgroundone dark:text-light-background">
+        <>
             <NavBar />
-            
-            <section className="flex items-center justify-center h-full p-2">
-
-                <LoadFramerMotion>
-                <CardWrapper
-                    headerName="Hola! from FT"
-                    headerCaption="Please signin to continue"
-                    backLinkDialog="Already have an account?"
-                    backLinkName="Signin"
-                    backLink="/login"
-                >
-                    <InputBox 
-                        inputLabel="Email"
-                        inputType="email"
-                        inputPlaceholder="Johndoe@gmail.com"
+            <section className="grid grid-cols-3">
+                <div className="hidden md:block md:col-span-1">
+                    <Carousel 
+                        imagesList={imagesList}
                     />
+                </div>
+                <div className=" col-span-3 md:col-span-2">
+                    <RegisterForm />
+                </div>
 
-                    <InputBox 
-                        inputLabel="Name"
-                        inputType="text"
-                        inputPlaceholder="John doe"
-                    />
-                    
-                    <InputBox 
-                        inputLabel="Password"
-                        inputType="password"
-                        inputPlaceholder="********"
-                    />
-
-                    <Button
-                        buttonType="primary"
-                        className="my-2"
-                    >
-                        Signup
-                    </Button>
-
-                    <hr className="my-2"/>
-
-                    <Socials />
-
-                </CardWrapper>
-                </LoadFramerMotion>
             </section>
-            
-
-        </div>
-        
+        </>
     )
 };
 
