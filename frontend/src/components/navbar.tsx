@@ -12,7 +12,10 @@ export const NavBar = () => {
     const { hash, pathname, search } = location;
 
     return (
-        <nav className="flex items-center justify-between p-2 border-b dark:border-b-dark-bordercolor dark:bg-dark-backgroundtwo sticky top-0 left-0">
+        <nav className="flex items-center justify-between p-2 border-b dark:border-b-dark-bordercolor dark:bg-dark-backgroundtwo sticky top-0 left-0 z-10 bg-white">
+            {/* make it tensculent in darkmode */}
+            {/* backdrop-filter backdrop-blur-lg z-10 dark:backdrop-blur-lg dark:backdrop-filter */}
+            {/* add thee sonditionally onl if logged in */}
             
             <div className="flex justify-center items-center gap-x-2 relative">
                 <Menu 
