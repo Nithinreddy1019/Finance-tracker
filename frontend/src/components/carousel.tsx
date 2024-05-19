@@ -63,7 +63,7 @@ export const Carousel = ({
                 <MotionConfig transition={{duration:0.7}}>
                     <AnimatePresence initial={false}>
                         <motion.img 
-                            className="absolute h-96 w-full"
+                            className="absolute h-96 w-full top-[25%]"
                             key={imagesList[current]}
                             src={imagesList[current]}
                             style={{y:0}}
