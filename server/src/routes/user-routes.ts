@@ -1,5 +1,6 @@
 import { Router } from "express";
 import bcrypt from "bcryptjs";
+import jwt, { JwtPayload } from "jsonwebtoken";
 
 import { signupSchema } from "../schema";
 import { prisma } from "../lib/db";
@@ -25,6 +26,20 @@ userRouter.post("/signup",  async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, salt);
 
     try {
+
+        const emailExists = await prisma.user.findUnique({
+            where: {
+                email: email
+            }
+        });
+
+        if(emailExists) {
+            return res.status(403).json({
+                error: "Email already exists"
+            })
+        };
+
+
         const user = await prisma.user.create({
             data: {
                 email,
@@ -33,14 +48,12 @@ userRouter.post("/signup",  async (req, res) => {
             }
         });
 
-        res.status(200);
-        return res.json({
-            message: "User created successfully",
-            user: {
-                email: user.email,
-                username: user.username
-            }
+        const token = jwt.sign({email: user.email}, process.env.JWT_SECRET as string, {expiresIn: "24h"});
+        res.cookie("token", token);
+        return res.status(200).json({
+            message: "User added succefully"
         });
+        
     } catch (error) {
         res.status(500);
         return res.json({
