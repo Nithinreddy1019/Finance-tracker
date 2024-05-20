@@ -49,7 +49,7 @@ userRouter.post("/signup",  async (req, res) => {
         });
 
         const token = jwt.sign({email: user.email}, process.env.JWT_SECRET as string, {expiresIn: "24h"});
-        res.cookie("token", token);
+        res.cookie("token", token, {maxAge: 60*60*24});
         return res.status(200).json({
             message: "User added succefully"
         });
