@@ -47,6 +47,7 @@ export const Carousel = ({
                             <button 
                                 className={`bg-black w-1.5 h-1.5 dark:bg-dark-primary rounded-xl ${index===current ? "bg-opacity-80 " : "bg-opacity-50 dark:bg-opacity-50" }`} 
                                 onClick={() => setCurrent(index)}
+                                key={index}
                             >
                                 
                             </button>
