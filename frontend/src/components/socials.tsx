@@ -13,7 +13,7 @@ export const Socials = () => {
         onSuccess: async (response) => {
             const acces_token = response.access_token;
 
-            const server_response = await axios.post("http://localhost:3000/user/auth/google", { access_token: acces_token });
+            const server_response = await axios.post("http://localhost:3000/user/auth/google", { access_token: acces_token }, {withCredentials: true});
 
             if(server_response.status === 200) {
                 navigate("/home")
