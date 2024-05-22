@@ -85,11 +85,11 @@ userRouter.post("/auth/login", async (req,res) => {
 
         if(!userExists) {
             return res.status(403).json({
-                error: "Emaiol not found"
+                error: "Email not found"
             });
         };
 
-        const passwordMatches = bcrypt.compare(password, userExists.password as string);
+        const passwordMatches = await bcrypt.compare(password, userExists.password as string);
 
         if(!passwordMatches) {
             return res.status(401).json({
