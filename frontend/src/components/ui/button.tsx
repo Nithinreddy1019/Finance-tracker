@@ -1,7 +1,7 @@
 
 interface ButtonProps {
     buttonType: 'primary' | 'secondary' | 'link',
-    onClick?: () => void,
+    onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void,
     children: React.ReactNode,
     className?: string
 }

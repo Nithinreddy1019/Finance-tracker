@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 
 import { Eye, EyeOff } from "lucide-react";
 
@@ -6,7 +6,7 @@ interface InputBoxProps {
     inputLabel: string,
     inputPlaceholder?: string,
     inputType: "text" | "password" | "email",
-    onChange?: () => void,
+    onChange?: (e: ChangeEvent<HTMLInputElement>) => void,
 }
 
 
@@ -39,6 +39,7 @@ export const InputBox = ({
                         className="w-full h-9 px-2 rounded-xl placeholder:text-sm border-light-bordercolor border-2 focus:outline-none focus:ring-0 focus:border-light-primary dark:bg-dark-backgroundtwo dark:border-dark-bordercolor focus:dark:border-dark-primary"
                         type={inputType}
                         placeholder={inputPlaceholder}
+                        onChange={onChange}
                     />
                 </div>
             }
@@ -54,6 +55,7 @@ export const InputBox = ({
                         className="w-full h-9 px-2 rounded-xl placeholder:text-sm border-light-bordercolor border-2 focus:outline-none focus:ring-0 focus:border-light-primary dark:bg-dark-backgroundtwo dark:border-dark-bordercolor focus:dark:border-dark-primary"
                         type={passwordIsVisible ? "text" : "password"}
                         placeholder={inputPlaceholder}
+                        onChange={onChange}
                     />
                     <button
                         onClick={passwordVisibilityHandler} 
