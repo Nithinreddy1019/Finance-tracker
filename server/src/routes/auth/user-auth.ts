@@ -48,10 +48,11 @@ userRouter.post("/auth/signup",  async (req, res) => {
             }
         });
 
-        const token = jwt.sign({email: user.email}, process.env.JWT_SECRET as string, {expiresIn: "24h"});
-        res.cookie("token", token, {maxAge: 60*60*24});
+        const token = jwt.sign({email: user.email}, process.env.JWT_SECRET as string, {expiresIn: "24h"});;
+
+        res.cookie("token", token, { maxAge: 24 * 60 * 60 * 1000, httpOnly: false, secure: false, sameSite: 'none' });
         return res.status(200).json({
-            message: "User added succefully"
+            message: "User added succesfully"
         });
         
     } catch (error) {
@@ -99,7 +100,7 @@ userRouter.post("/auth/login", async (req,res) => {
 
         const token = jwt.sign({email: userExists.email}, process.env.JWT_SECRET as string, { expiresIn: "24h" });
 
-        res.cookie("token", token, { maxAge: 60 * 60 * 24 });
+        res.cookie("token", token, { maxAge: 24 * 60 * 60 * 1000, httpOnly: false, secure: false, sameSite: 'none' });
         return res.status(200).json({
             message: "Login successfull"
         });
@@ -137,8 +138,9 @@ userRouter.post("/auth/google", async (req, res) => {
         });
 
         if(userExists) {
-            const token = jwt.sign({ email: userExists.email}, process.env.JWT_SECRET as string, { expiresIn: "24h" });
-            res.cookie("token", token, { maxAge: 36000000, httpOnly: false, secure: false, sameSite: 'none' });
+            const token = jwt.sign({email: userExists.email}, process.env.JWT_SECRET as string, { expiresIn: "24h" });
+
+            res.cookie("token", token, { maxAge: 24 * 60 * 60 * 1000, httpOnly: false, secure: false, sameSite: 'none' });
 
             return res.status(200).json({
                 message: "Login successfull"
@@ -152,8 +154,8 @@ userRouter.post("/auth/google", async (req, res) => {
             }
         });
 
-        const token = jwt.sign({ email: user.email}, process.env.JWT_SECRET as string, { expiresIn: "24h" });
-        res.cookie("token", token, { maxAge: 36000000, httpOnly: false, secure: false, sameSite: 'none' });
+        const token = jwt.sign({email: user.email}, process.env.JWT_SECRET as string, { expiresIn: "24h" });
+        res.cookie("token", token, { maxAge: 24 * 60 * 60 * 1000, httpOnly: false, secure: false, sameSite: 'none' });
 
         return res.status(200).json({
             message: "Login successfull"
