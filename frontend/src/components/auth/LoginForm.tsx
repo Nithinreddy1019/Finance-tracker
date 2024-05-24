@@ -16,24 +16,27 @@ export const LoginForm = () => {
     const [email, setEmail] = useRecoilState(emailStateAtom);
     const [password, setPassword] = useRecoilState(passwordStateAtom);
 
-    const handleLoginSubmit = async () => {
-        
+    const handleLoginSubmit = async () => {    
         try {
             
             const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/user/auth/login`, {
                 email: email,
                 password: password
-            });
+            }, { withCredentials: true });
 
             if(response.status === 200) {
                 toast.success(response.data.message);
             };
 
+            setEmail("");
+            setPassword("");
             navigate("/home")
             
         } catch (error: any) {
             if(axios.isAxiosError(error)) {
-                toast.error(error.response?.data.error)
+                {
+                    error.response?.data.error ? toast.error(error.response?.data.error) : toast.error("Network error")
+                }
             } else {
                 toast.error("An error occured")
             };

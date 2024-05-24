@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 
 import { Sun } from "lucide-react";
@@ -8,10 +8,27 @@ export const DarkModeToggle = () => {
 
     const [dark, setDark] = useState(false);
 
-    const handleDarkModeToggle = () => {
-        setDark(!dark);
+    useEffect(() => {
+        const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    
+        const handleDefault = () => {
+            setDark(mediaQuery.matches);
+            if(mediaQuery.matches) document.body.classList.toggle("dark");
+        };
+
+        handleDefault();
+
+    }, [])
+
+    // const handleDarkModeToggle = () => {
+    //     setDark(!dark);
+    //     document.body.classList.toggle("dark")
+    // };
+
+    const handleDarkModeToggle = useCallback(() => {
+        setDark(e => !e);
         document.body.classList.toggle("dark")
-    }
+    }, [])
 
     return (
         <div>

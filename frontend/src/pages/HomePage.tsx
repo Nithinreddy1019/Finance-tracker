@@ -3,10 +3,11 @@ import { useCookies } from "react-cookie";
 
 const HomePage = () => {
 
-    const [cookie] = useCookies(["token"]);
+    const [cookies, setCookie] = useCookies(["token"]);
 
+    console.log(cookies["token"]);
     useEffect(() => {
-        console.log(cookie["token"]);
+        console.log(cookies["token"]);
     }, [])
 
     return (
