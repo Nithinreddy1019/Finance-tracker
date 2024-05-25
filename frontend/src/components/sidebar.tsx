@@ -28,6 +28,7 @@ export const SideBar = () => {
             >
                 
                 <button
+                    className="hover:opacity-70"
                     onClick={() => {
                         setHamburgerActive(change => !change);
                     }}
