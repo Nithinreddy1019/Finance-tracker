@@ -1,21 +1,30 @@
-import { useEffect } from "react";
-import { useCookies } from "react-cookie";
+import { NavBar } from "../components/navbar";
+import { SideBar } from "../components/sidebar";
 
 const HomePage = () => {
 
-    const [cookies, setCookie] = useCookies(["token"]);
 
-    console.log(cookies["token"]);
-    useEffect(() => {
-        console.log(cookies["token"]);
-    }, [])
+return (
+    <main>
+        <NavBar />
 
-    return (
-        <div>
-            Home page
-        </div>
-    )
+        <section className="h-screen bg-light-background dark:bg-dark-backgroundone">
+
+            <div className="h-full grid grid-cols-12 dark:bg-dark-backgroundone relative">
+
+                {/* sidebar component */}
+                <SideBar />
+                
+                {/* Main section */}
+                <div className="h-full col-span-10">
+
+                </div>
+
+            </div>
+
+        </section>
+    </main>
+);
 };
-
 
 export default HomePage;
