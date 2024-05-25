@@ -3,10 +3,12 @@ import { useCallback, useEffect, useState } from "react";
 
 import { Sun } from "lucide-react";
 import { Moon } from "lucide-react";
+import { useRecoilState } from "recoil";
+import { darkModeStateAtom } from "../../store/atoms/darkMode";
 
 export const DarkModeToggle = () => {
 
-    const [dark, setDark] = useState(false);
+    const [dark, setDark] = useRecoilState(darkModeStateAtom);
 
     useEffect(() => {
         const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
@@ -19,11 +21,6 @@ export const DarkModeToggle = () => {
         handleDefault();
 
     }, [])
-
-    // const handleDarkModeToggle = () => {
-    //     setDark(!dark);
-    //     document.body.classList.toggle("dark")
-    // };
 
     const handleDarkModeToggle = useCallback(() => {
         setDark(e => !e);
