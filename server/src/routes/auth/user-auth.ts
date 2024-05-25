@@ -100,7 +100,11 @@ userRouter.post("/auth/login", async (req,res) => {
 
         const token = jwt.sign({email: userExists.email}, process.env.JWT_SECRET as string, { expiresIn: "24h" });
 
-        res.cookie("token", token, { maxAge: 24 * 60 * 60 * 1000, httpOnly: false, secure: false, sameSite: 'none' });
+        const cookievar = res.cookie("token", token, { maxAge: 99999999, httpOnly: true, secure: false, sameSite: "lax" });
+
+        console.log(cookievar)
+        
+
         return res.status(200).json({
             message: "Login successfull"
         });
@@ -139,8 +143,9 @@ userRouter.post("/auth/google", async (req, res) => {
 
         if(userExists) {
             const token = jwt.sign({email: userExists.email}, process.env.JWT_SECRET as string, { expiresIn: "24h" });
+            res.setHeader("Cross-Origin-Opener-Policy", "same-origin-allow-popups")
 
-            res.cookie("token", token, { maxAge: 24 * 60 * 60 * 1000, httpOnly: false, secure: false, sameSite: 'none' });
+            res.cookie("token", token, { maxAge: 24 * 60 * 60 * 1000, httpOnly: true, secure: false, sameSite: 'none', path: "/" });
 
             return res.status(200).json({
                 message: "Login successfull"
