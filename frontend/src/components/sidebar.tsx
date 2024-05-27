@@ -20,7 +20,7 @@ export const SideBar = () => {
     const [hamburgerActive, setHamburgerActive] = useRecoilState(hamburgerActiveStateAtom);
 
     return (
-        <nav className={`absolute -left-12 md:col-span-2 md:flex md:flex-col md:gap-y-6 md:pl-3 md:items-start md:overflow-hidden h-full md:p-2 bg-white border-r border-light-bordercolor text-black dark:bg-dark-backgroundtwo dark:border-dark-bordercolor dark:text-white  md:sticky md:left-0 ${hamburgerActive? "-left-0 md:min-w-[150px] w-full z-10 p-4" : "md:max-w-[68px]"}`}>
+        <nav className={`absolute -left-12 md:col-span-2 md:flex md:flex-col md:gap-y-6 md:pl-3 md:items-start md:overflow-hidden h-full md:p-2 bg-white border-r border-light-bordercolor text-black dark:bg-dark-backgroundtwo dark:border-dark-bordercolor dark:text-white  md:sticky md:left-0 ${hamburgerActive? "left-0 md:min-w-[150px] w-full z-10 p-4" : "md:max-w-[68px]"}`}>
             
 
             <div 
