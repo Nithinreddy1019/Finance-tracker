@@ -1,92 +1,74 @@
-import { BarChart3, Menu } from "lucide-react";
-import { X } from "lucide-react";
-import { Home } from "lucide-react";
-import { ShoppingCart } from "lucide-react";
-import { Wallet } from "lucide-react";
-
+import { ChevronFirst, ChevronLast, EllipsisVertical } from "lucide-react";
+import logo from "../../public/ft.svg";
+import { DarkModeToggle } from "./ui/darkmode-toggle";
 import { useRecoilState } from "recoil";
-import { hamburgerActiveStateAtom } from "../store/atoms/HamburgerActive";
-import { SidebarLink } from "./ui/sidebar-link";
-import { useLocation } from "react-router-dom";
+import { sideBarStateAtom } from "../store/atoms/sideBar";
 
 
-
-export const SideBar = () => {
-
-    const location = useLocation();
-
-    const { hash, pathname, search } =location;
-
-    const [hamburgerActive, setHamburgerActive] = useRecoilState(hamburgerActiveStateAtom);
-
-    return (
-        <nav className={`absolute -left-12 md:col-span-2 md:flex md:flex-col md:gap-y-6 md:pl-3 md:items-start md:overflow-hidden h-full md:p-2 bg-white border-r border-light-bordercolor text-black dark:bg-dark-backgroundtwo dark:border-dark-bordercolor dark:text-white  md:sticky md:left-0 ${hamburgerActive? "left-0 md:min-w-[150px] w-full z-10 p-4" : "md:max-w-[68px]"}`}>
-            
-
-            <div 
-                className={`w-full h-8 hidden md:flex relative p-2`}
-            >
-                
-                <button
-                    className="hover:opacity-70"
-                    onClick={() => {
-                        setHamburgerActive(change => !change);
-                    }}
-                >
-                    {
-                        hamburgerActive ? 
-                        <X 
-                            size={28}
-                            className="absolute right-0 bottom-0"
-                        /> : 
-                        <Menu 
-                            size={28}
-                            className="absolute bottom-0"
-                        />
-                    }
-                </button>
-                
-            </div>
-
-
-            <div className=" w-full flex flex-col gap-y-6 pr-2">
-                
-                <SidebarLink 
-                    isActive={pathname === "/home" ? true : false}
-                    isFullSize={hamburgerActive}
-                    linkText={"Home"}
-                >
-                    <Home />
-                </SidebarLink>
-
-                <SidebarLink 
-                    isActive={false}
-                    isFullSize={hamburgerActive}
-                    linkText={"Savings"}
-                >
-                    <ShoppingCart />
-                </SidebarLink>
-
-                <SidebarLink 
-                    isActive={false}
-                    isFullSize={hamburgerActive}
-                    linkText={"Expenses"}
-                >
-                    <Wallet />
-                </SidebarLink>
-
-                <SidebarLink 
-                    isActive={false}
-                    isFullSize={hamburgerActive}
-                    linkText={"Portfolio"}
-                >
-                    <BarChart3 />
-                </SidebarLink>
-
-            </div>
-
-        </nav>
-    )
+interface SideBarProps {
+    children: React.ReactNode
 };
 
+export const SideBar = ({
+    children
+}: SideBarProps) => {
 
+    const [extended, setExtended] = useRecoilState(sideBarStateAtom);
+
+    return (
+        <aside className="h-full w-fit bg-light-background text-black dark:bg-dark-backgroundone dark:text-white">
+            <nav className="h-full flex flex-col bg-light-background text-black dark:bg-dark-backgroundone dark:text-white border-r border-light-bordercolor dark:border-dark-bordercolor shadow-sm">
+
+                <div 
+                    className={`flex items-center gap-x-2 p-2 h-16 ${extended ? "justify-between border-b border-light-bordercolor dark:border-dark-bordercolor" : "justify-center pr-3"}`}
+                >
+                    <img 
+                        src={logo}
+                        className={`overflow-hidden transition-all ${extended ? "w-10 h-10" : "w-0"}`}
+                    />
+                    <button
+                        className="p-1 bg-light-secondary rounded-full dark:bg-dark-primary hover:bg-light-primary hover:text-white dark:hover:opacity-80 dark:text-white"
+                        onClick={() => {
+                            setExtended(!extended)
+                        }}
+                    >
+                        {
+                            extended ? <ChevronFirst /> :
+                            <ChevronLast />
+                        }
+                        
+                    </button>
+                </div>
+
+                <ul className="flex-1 p-2 flex flex-col gap-y-3 pt-2">
+                    {children}
+                </ul>
+
+                <div className="flex items-center justify-center gap-x-1 p-2 border-t border-light-bordercolor dark:border-dark-bordercolor">
+                    <div className="flex items-center gap-x-2 bg-light-secondary rounded-lg p-1 text-black dark:bg-dark-backgroundone dark:text-white">
+                        <div className={`text-xl font-semibold p-1 py-2 rounded-lg
+                            bg-light-secondary dark:bg-dark-backgroundtwo`}>
+                            KN
+                        </div>
+                        <div className={`overflow-hidden leading-4 transition-all ${extended? "" : "w-0 hidden"}`}>
+                            <h4 className="font-semibold">Nithin</h4>
+                            <p className="text-sm">nithin@gmail.com</p>
+                        </div>
+                        <div className={`overflow-hidden transition-all ${extended ? "" : "w-0 hidden"}`}>
+                            <button className="hover:opacity-80 pt-1">
+                                <EllipsisVertical size={24}/>
+                            </button>
+                        </div>
+                    </div>
+                    <div className={`overflow-hidden transition-all ${extended ? "" : "w-0 hidden"}`}>
+                        <DarkModeToggle />
+                    </div>
+
+                </div>
+
+                
+
+            </nav>
+        </aside>
+    )
+}
